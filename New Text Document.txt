@@ -1,0 +1,132 @@
+package com.pom.com;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import com.manager.com.Pageobjectmanager;
+import com.reader.com.FileReaderManager;
+
+public class Login extends com.base.Base{
+
+	public static void main(String[] args) throws IOException {
+		
+		
+			
+		WebDriver driver = browserLunach("chrome");
+		
+	//	Launchurl("https://adactinhotelapp.com/");
+		
+		Launchurl(FileReaderManager.getInstanceFR().getInstanceCR().geturl());
+		
+		elementwait(driver);
+		
+		Pageobjectmanager pom = new Pageobjectmanager(driver); // page object manager 
+		 
+		Loginpage loginpage= new Loginpage(driver);
+		
+		sendValues(pom.getLogin().getUsername(),FileReaderManager.getInstanceFR().getInstanceCR().getusername());
+		
+    //  sendValues(loginpage.getUsername(), "Praveenpri");
+		
+		sendValues(pom.getLogin().getPassward(), FileReaderManager.getInstanceFR().getInstanceCR().getpassward());
+	    
+	//  sendValues(loginpage.getPassward(), "Varun2018");
+	    
+	    elementclick(loginpage.getLoginbtn());
+	     
+	    System.out.println("success");
+	    
+	    
+	    
+	    //Search Hotel
+	    
+	    Search_hotel search= new Search_hotel(driver);
+	    
+	    singledropdown(search.getLocation(), "Melbourne", "value");	
+	    
+	    singledropdown(search.getHotel(), "Hotel Cornice", "value");
+	    
+	    singledropdown(search.getRoomtype(), "3", "index");
+	  
+	    singledropdown(search.getNumberofRooms(), "6", "index");
+	    
+	    sendValues(search.getCheckin(), "01/05/2022");
+	    
+	    sendValues(search.getCheckout(), "04/05/2022");
+	    
+	    singledropdown(search.getAdults(), "3", "index");
+	    
+	    singledropdown(search.getChilds(), "2", "index");
+	   
+	    elementclick(search.getSearch());
+	    
+	   
+	    
+	    
+	    // select the hotel
+	    
+	    Radiobtn radio = new Radiobtn(driver);
+	    
+	    elementclick(radio.getRadio());
+	    
+	    elementclick(radio.getContinue());
+	    
+	    
+	    //Book the Hotel
+	    
+	    Book_Hotel book= new Book_Hotel(driver);
+	    
+	    sendValues(book.getFristname(), "praveen");
+	    
+	    sendValues(book.getLastname(), "k");
+	    
+	    sendValues(book.getAddress(), "vijaynagar bangalore");
+	    
+	    sendValues(book.getCreditcard(),"0983 2343 2343 3444");	 
+	    
+	    singledropdown(book.getCardtype(), "MAST", "value");
+	    
+	    singledropdown(book.getExpirydate(), "8", "index");
+	    
+	    singledropdown(book.getExpiryyear(),"2022" , "value");
+	    
+//	    sendValues(pom.getBook().getCVVnumber(), FileReaderManager.getInstanceFR().getInstanceCR().getCVVnumber());
+        sendValues(book.getCVVnumber(), "453");
+	    
+	    elementclick(book.getBook());
+	      
+	    
+	    
+	    
+	    
+	    
+	  
+	    
+	  
+	   
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+
+	
+		
+	}
+
+	}
+
+	
+		
+	
+	
+     	
+	
+	
+	
+
+
